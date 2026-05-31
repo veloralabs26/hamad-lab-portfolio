@@ -25,7 +25,7 @@ const projects = [
   {
     number: '03',
     title: 'Miso: Creator Content OS',
-    status: 'Live build log',
+    status: 'Live demo',
     tag: 'Personal brand engine',
     icon: Bot,
     summary: 'A separate Telegram agent for Arabic scripts, LinkedIn posts, content calendars, safety review, and weekly growth loops.',
@@ -34,7 +34,7 @@ const projects = [
   {
     number: '04',
     title: 'LinkedIn Talent + Recruiter Radar',
-    status: 'Building in public',
+    status: 'Live demo',
     tag: 'Career system',
     icon: BriefcaseBusiness,
     summary: 'A professional growth workflow for posts, recruiter mapping, outreach drafts, application tracking, and follow-up reminders.',
@@ -43,7 +43,7 @@ const projects = [
   {
     number: '05',
     title: 'Arabic Company Knowledge Assistant',
-    status: 'Planned',
+    status: 'Live demo',
     tag: 'Arabic RAG',
     icon: FileText,
     summary: 'A bilingual assistant that answers from company documents with citations, uncertainty labels, and escalation behavior.',
@@ -52,7 +52,7 @@ const projects = [
   {
     number: '06',
     title: 'Agent Monitoring + Cost Dashboard',
-    status: 'Planned',
+    status: 'Live demo',
     tag: 'Trust layer',
     icon: LockKeyhole,
     summary: 'A visibility layer for AI systems: run logs, cost estimates, approvals, failures, tool usage, and human overrides.',
@@ -68,12 +68,12 @@ const services = [
 ];
 
 const roadmap = [
-  ['Built', 'Portfolio foundation + resource funnel mockup'],
-  ['Built', 'AI Business Process Auditor demo v1'],
-  ['Built', 'WhatsApp Command Center demo v1'],
-  ['Next', 'Miso Creator OS case study'],
-  ['After', 'LinkedIn Recruiter Radar'],
-  ['After', 'Arabic Knowledge Assistant']
+  ['Live', 'Portfolio foundation + resource funnel mockup'],
+  ['Live', 'AI Business Process Auditor demo v1'],
+  ['Live', 'WhatsApp Command Center demo v1'],
+  ['Live', 'Miso Creator OS demo'],
+  ['Live', 'LinkedIn Recruiter Radar demo'],
+  ['Live', 'Arabic Knowledge Assistant + Agent Monitor demos']
 ];
 
 const auditRows = [
@@ -87,6 +87,33 @@ const inboxRows = [
   { name: 'سارة', type: 'Price request', priority: 'High', draft: 'أهلًا سارة، شكرًا لتواصلك. ممكن ترسلين لنا تفاصيل الطلب عشان نعطيك السعر الأنسب؟' },
   { name: 'Abdullah', type: 'Follow-up', priority: 'Medium', draft: 'هلا عبدالله، حبيت أتابع معك بخصوص الطلب السابق. هل ما زلت مهتم؟' },
   { name: 'Noura', type: 'Complaint', priority: 'Owner approval', draft: 'أهلًا نورة، نعتذر عن التجربة. بنراجع الموضوع ونتواصل معك بحل مناسب.' }
+];
+
+const contentPipeline = [
+  ['Raw idea', 'I want to build income with AI without fake guru claims'],
+  ['Arabic short script', '45-second script with hook, story, lesson, CTA'],
+  ['Repurpose', 'LinkedIn post, X thread, Shorts caption'],
+  ['Safety pass', 'No employer secrets, no fake income claims'],
+  ['Measure', 'Views, comments, saves, replies, leads']
+];
+
+const recruiterRows = [
+  ['AI Automation Engineer', 'Hiring Manager', 'Warm intro draft'],
+  ['Solutions Engineer', 'Recruiter', 'Connection note ready'],
+  ['AI Product Builder', 'Founder', 'Portfolio pitch ready']
+];
+
+const knowledgeRows = [
+  { q: 'ما هي سياسة الإرجاع؟', source: 'Customer Policy.pdf · p.4', confidence: 'High' },
+  { q: 'Can we share customer data externally?', source: 'Data Handling Guide · p.2', confidence: 'Escalate' },
+  { q: 'كيف أطلب إجازة؟', source: 'HR Handbook · p.7', confidence: 'High' }
+];
+
+const monitorRows = [
+  ['miso.script_chef', '$0.03', 'Approved', 'Success'],
+  ['whatsapp.reply_draft', '$0.01', 'Needs owner', 'Paused'],
+  ['audit.report_builder', '$0.05', 'Auto-safe', 'Success'],
+  ['knowledge.answer', '$0.02', 'Escalated', 'Review']
 ];
 
 function ProjectCard({ p }) {
@@ -159,10 +186,43 @@ function App() {
 
       <section id="demos" className="section demos-section">
         <div className="section-heading">
-          <div><div className="section-kicker">Built demos</div><h2>Two projects are already becoming real assets.</h2></div>
-          <p>These are portfolio-ready demo surfaces using sample data. Next step is connecting storage, forms, and real screenshots.</p>
+          <div><div className="section-kicker">Built demos</div><h2>All six projects now have live demo surfaces.</h2></div>
+          <p>These are public demo surfaces using sample data. Next step is turning each one into deeper case-study pages with screenshots, forms, and working interactions.</p>
         </div>
         <div className="demo-grid">
+          <article className="demo-card miso-demo">
+            <div className="demo-header"><Bot/><span>Miso Creator Content OS</span></div>
+            <h3>Idea-to-content pipeline</h3>
+            <p className="demo-muted">A real social media operating system for turning Hamad's raw thoughts into Arabic-first content and platform variants.</p>
+            <div className="pipeline-stack">
+              {contentPipeline.map(([step, output]) => <div className="pipeline-card" key={step}><b>{step}</b><span>{output}</span></div>)}
+            </div>
+          </article>
+          <article className="demo-card linkedin-demo">
+            <div className="demo-header"><BriefcaseBusiness/><span>LinkedIn Talent + Recruiter Radar</span></div>
+            <h3>Career opportunity engine</h3>
+            <p className="demo-muted">A portfolio-facing workflow for content, recruiter mapping, outreach drafts, and application follow-up.</p>
+            <div className="radar-target"><span>1,015</span><b>15-day follower target</b></div>
+            <div className="recruiter-list">
+              {recruiterRows.map(([role, person, status]) => <div key={role}><b>{role}</b><span>{person}</span><em>{status}</em></div>)}
+            </div>
+          </article>
+          <article className="demo-card knowledge-demo">
+            <div className="demo-header"><FileText/><span>Arabic Company Knowledge Assistant</span></div>
+            <h3>Cited bilingual answers</h3>
+            <p className="demo-muted">A sample RAG interface showing Arabic/English questions, source citations, confidence, and escalation behavior.</p>
+            <div className="knowledge-list">
+              {knowledgeRows.map(row => <div key={row.q}><b>{row.q}</b><span>{row.source}</span><em>{row.confidence}</em></div>)}
+            </div>
+          </article>
+          <article className="demo-card monitor-demo">
+            <div className="demo-header"><LockKeyhole/><span>Agent Monitoring + Cost Dashboard</span></div>
+            <h3>Visibility for AI work</h3>
+            <p className="demo-muted">A trust layer showing run status, cost, approvals, and human review states so agents do not feel invisible.</p>
+            <div className="monitor-table">
+              {monitorRows.map(([run, cost, approval, status]) => <div key={run}><b>{run}</b><span>{cost}</span><span>{approval}</span><em>{status}</em></div>)}
+            </div>
+          </article>
           <article className="demo-card audit-demo">
             <div className="demo-header"><Radar/><span>AI Business Process Auditor</span></div>
             <h3>Automation Opportunity Report</h3>
